@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Successful confirmed page</title>
+</head>
+<body>
+    <div style="text-align: center">
+
+        <form th:action = "@{/confirm/{generatedString}}" th:object = "${userDTO}" method = "GET">
+            <p>Hello,<span th:text="${userDTO.name}"></span></p>
+        </form>
+        <p>Congratulations with successful confirmed page!</p>
+        <p>Now you have all features of our site.</p>
+
+    </div>
+</body>
+</html>

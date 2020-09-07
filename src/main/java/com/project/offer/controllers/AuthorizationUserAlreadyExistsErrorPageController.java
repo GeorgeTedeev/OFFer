@@ -17,22 +17,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
-
 @Controller
-public class AuthorizationPageController {
+public class AuthorizationUserAlreadyExistsErrorPageController {
 
     @Autowired
     AuthorizationService authorizationService;
     @Autowired
     GetUserDTOByIdService getUserDTOByIdService;
 
-    @GetMapping("/authorizationPage")
+    @GetMapping("/authorizationUserAlreadyExistsErrorPage")
     String addAttribute(Model model){
         model.addAttribute("userForm", new UserForm());
-        return "authorizationPage";
+        return "authorizationUserAlreadyExistsErrorPage";
     }
 
-    @PostMapping("/authorizationPage")
+    @PostMapping("/authorizationUserAlreadyExistsErrorPage")
     String doAuthorization(@Valid @ModelAttribute("userForm") UserForm userForm, BindingResult bindingResult){
 
         String redirect;
@@ -49,11 +48,9 @@ public class AuthorizationPageController {
         return redirect;
     }
 
-
     @ExceptionHandler(UserWithSuchLoginAlreadyExistsException.class)
     public String getErrorPage(){
         String redirect = "redirect:/authorizationUserAlreadyExistsErrorPage";
         return redirect;
     }
-
 }

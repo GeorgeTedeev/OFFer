@@ -1,6 +1,5 @@
 package com.project.offer.controllers;
 
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -9,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class HomePageController {
 
     @GetMapping("/homePage")
-    String getHomePage(){
+    public String getHomePage() throws InterruptedException{
         return "index";
     }
 }

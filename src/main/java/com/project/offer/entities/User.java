@@ -1,21 +1,17 @@
 package com.project.offer.entities;
 
 import com.project.offer.enums.Genre;
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
-import org.springframework.context.annotation.Scope;
-
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-//@Scope("prototype")
-@Table(name = "appUser")
+@Table(name = "User_table")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
 
     @Column(name = "name")
     private String name;
@@ -38,19 +34,20 @@ public class User {
     @ElementCollection
     @Column(name = "artists")
     private Set<String> favouriteArtists;
-
-    @Generated(GenerationTime.INSERT)
-    @Column(name = "registrationValue")
-    private String registrationValue;
+    @Column(name = "generatedString")
+    private String generatedString;
+    @Column(name = "confirmFlag")
+    private boolean confirmFlag;
 
 
     public User() {
     }
 
-    public User(String name, String login, String password){
+    public User(String name, String login, String password, String generatedString){
         this.name = name;
         this.login = login;
         this.password = password;
+        this.generatedString = generatedString;
     }
 
     public Long getId() {
@@ -59,14 +56,6 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getRegistrationValue() {
-        return registrationValue;
-    }
-
-    public void setRegistrationValue(String registrationValue) {
-        this.registrationValue = registrationValue;
     }
 
     public String getName() {
@@ -125,5 +114,36 @@ public class User {
         this.favouriteArtists = favouriteArtist;
     }
 
+    public String getGeneratedString() {
+        return generatedString;
+    }
 
+    public void setGeneratedString(String generatedString) {
+        this.generatedString = generatedString;
+    }
+
+    public boolean isConfirmFlag() {
+        return confirmFlag;
+    }
+
+    public void setConfirmFlag(boolean confirmFlag) {
+        this.confirmFlag = confirmFlag;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", favouriteGenres=" + favouriteGenres +
+                ", favouriteMovies=" + favouriteMovies +
+                ", favouriteTVShows=" + favouriteTVShows +
+                ", favouriteDirectors=" + favouriteDirectors +
+                ", favouriteArtists=" + favouriteArtists +
+                ", generatedString='" + generatedString + '\'' +
+                ", confirmFlag=" + confirmFlag +
+                '}';
+    }
 }

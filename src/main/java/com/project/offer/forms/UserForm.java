@@ -1,8 +1,18 @@
 package com.project.offer.forms;
 
+import javax.validation.constraints.*;
+
 public class UserForm {
+
+    @Pattern(regexp = "[A-Za-z0-9!?./:;]*")
+    @NotEmpty
     private String name;
+    @NotBlank
+    @Email
     private String login;
+    @Size(min = 8)
+    @Pattern(regexp = "[A-Za-z0-9!?./:;]*")
+    @NotEmpty
     private String password;
 
     public UserForm() {

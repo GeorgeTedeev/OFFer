@@ -23,7 +23,7 @@ public class GetUserByIdController {
 
     @ExceptionHandler(NoEntityWithSuchIdException.class)
     public String getNoSuchEntityMessage(){
-        String error = "No such user with such id";
+        String error = "authorizationErrorPage";
         return error;
     }
 

@@ -1,6 +1,5 @@
 package com.project.offer.controllers;
 
-
 import com.project.offer.entities.User;
 import com.project.offer.exceptions.UserWithSuchLoginAlreadyExistsException;
 import com.project.offer.forms.UserForm;
@@ -17,22 +16,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
 
-
 @Controller
-public class AuthorizationPageController {
+public class AuthorizationValidErrorPageController {
 
     @Autowired
     AuthorizationService authorizationService;
     @Autowired
     GetUserDTOByIdService getUserDTOByIdService;
 
-    @GetMapping("/authorizationPage")
+    @GetMapping("/authorizationValidErrorPage")
     String addAttribute(Model model){
         model.addAttribute("userForm", new UserForm());
-        return "authorizationPage";
+        return "authorizationValidErrorPage";
     }
 
-    @PostMapping("/authorizationPage")
+    @PostMapping("/authorizationValidErrorPage")
     String doAuthorization(@Valid @ModelAttribute("userForm") UserForm userForm, BindingResult bindingResult){
 
         String redirect;
@@ -48,7 +46,6 @@ public class AuthorizationPageController {
 
         return redirect;
     }
-
 
     @ExceptionHandler(UserWithSuchLoginAlreadyExistsException.class)
     public String getErrorPage(){
