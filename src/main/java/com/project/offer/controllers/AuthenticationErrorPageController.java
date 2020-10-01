@@ -2,6 +2,7 @@ package com.project.offer.controllers;
 
 import com.project.offer.exceptions.NoSuchLoginOrPasswordException;
 import com.project.offer.forms.UserForm;
+import com.project.offer.forms.UserFormForAuthentication;
 import com.project.offer.services.AuthenticationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,15 +22,15 @@ public class AuthenticationErrorPageController {
 
     @GetMapping("/authenticationErrorPage")
     public String addAttribute(Model model){
-        model.addAttribute("userForm", new UserForm());
+        model.addAttribute("userFormForAuthentication", new UserFormForAuthentication());
         return "authenticationErrorPage";
     }
 
     @PostMapping("/authenticationErrorPage")
-    public String doAuthentication(@Valid @ModelAttribute("userForm") UserForm userForm){
+    public String doAuthentication(@Valid @ModelAttribute("userForm") UserFormForAuthentication userFormForAuthentication){
 
-        if (authenticationService.isUserExist(userForm) && authenticationService.isUserConfirmed(userForm)) return "confirmedUserHomePage";
-        else if (authenticationService.isUserExist(userForm)) return "userHomePage";
+        if (authenticationService.isUserExist(userFormForAuthentication) && authenticationService.isUserConfirmed(userFormForAuthentication)) return "confirmedUserHomePage";
+        else if (authenticationService.isUserExist(userFormForAuthentication)) return "userHomePage";
         else throw new NoSuchLoginOrPasswordException("Such login or password doesn`t exist");
 
 

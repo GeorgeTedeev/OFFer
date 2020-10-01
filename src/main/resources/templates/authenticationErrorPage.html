@@ -9,7 +9,7 @@
     <a th:href="@{/homePage}">Home</a>
     <h1>Authentication</h1>
     <p>Wrong login or password</p>
-    <form th:action="@{/authenticationPage}" th:object="${userForm}" method="POST">
+    <form th:action="@{/authenticationPage}" th:object="${userFormForAuthentication}" method="POST">
         <p>Enter your email and password to log in</p>
         <p>Login:</p>
         <input type ="text" th:field="*{login}"/>

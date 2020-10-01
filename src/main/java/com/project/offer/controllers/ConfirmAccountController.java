@@ -33,6 +33,7 @@ public class ConfirmAccountController {
         user.setConfirmFlag(true);
         user.setGeneratedString("");
         userRepository.save(user);
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++");
 
         UserDTO userDTO = getUserDTOByIdService.getUserDTOById(user.getId());
         model.addAttribute("userDTO", userDTO);
